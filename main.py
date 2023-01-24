@@ -8,7 +8,6 @@ django.setup()
 from datacenter.models import Passcard  # noqa: E402
 
 if __name__ == '__main__':
-    # Программируем здесь
     pass_cards = Passcard.objects.all()
     first_pass_card = pass_cards[0]
     print(
@@ -19,5 +18,7 @@ if __name__ == '__main__':
         is_active: {first_pass_card.is_active}
         """
     )
+    active_pass_cards = [pass_card for pass_card in pass_cards if pass_card.is_active]
     print(f"Все пропуски: {pass_cards}")  # noqa: T001
-    print(f"Количество пропусков: {Passcard.objects.count()}")  # noqa: T001
+    print(f"Всего пропусков: {Passcard.objects.count()}")  # noqa: T001
+    print(f"Активных пропусков: {len(active_pass_cards)}")  # noqa: T001
