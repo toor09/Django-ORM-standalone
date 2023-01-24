@@ -18,7 +18,7 @@ if __name__ == '__main__':
         is_active: {first_pass_card.is_active}
         """
     )
-    active_pass_cards = [pass_card for pass_card in pass_cards if pass_card.is_active]
+    active_pass_cards = Passcard.objects.filter(is_active=True)
     print(f"Все пропуски: {pass_cards}")  # noqa: T001
     print(f"Всего пропусков: {Passcard.objects.count()}")  # noqa: T001
     print(f"Активных пропусков: {len(active_pass_cards)}")  # noqa: T001
