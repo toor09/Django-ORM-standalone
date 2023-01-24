@@ -9,5 +9,15 @@ from datacenter.models import Passcard  # noqa: E402
 
 if __name__ == '__main__':
     # Программируем здесь
-    print('Все пропуски:', Passcard.objects.all())  # noqa: T001
-    print('Количество пропусков:', Passcard.objects.count())  # noqa: T001
+    pass_cards = Passcard.objects.all()
+    first_pass_card = pass_cards[0]
+    print(
+        f"""
+        owner_name: {first_pass_card.owner_name}
+        passcode: {first_pass_card.passcode}
+        created_at: {first_pass_card.created_at}
+        is_active: {first_pass_card.is_active}
+        """
+    )
+    print(f"Все пропуски: {pass_cards}")  # noqa: T001
+    print(f"Количество пропусков: {Passcard.objects.count()}")  # noqa: T001
