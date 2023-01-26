@@ -35,3 +35,6 @@ if __name__ == '__main__':
         print(f'Зашёл в хранилище, время по Москве: {localtime(visit.entered_at)}')
         time_duration = localtime() - localtime(visit.entered_at)
         print(f'Находится в хранилище: {time_duration}')
+
+    for num, visit in enumerate(visits[:20], start=1):
+        print(f'{num}-{visit.passcard.owner_name}')
