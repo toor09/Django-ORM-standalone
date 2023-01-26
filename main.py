@@ -1,5 +1,6 @@
 import os
 import django
+from django.utils.timezone import localtime
 # from django.core.management import execute_from_command_line
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
@@ -29,3 +30,8 @@ if __name__ == '__main__':
     print(f'Все пропуски: {pass_cards}')  # noqa: T001
     print(f'Всего пропусков: {Passcard.objects.count()}')  # noqa: T001
     print(f'Активных пропусков: {len(active_pass_cards)}')  # noqa: T001
+
+    for visit in visits:
+        print(f'Зашёл в хранилище, время по Москве: {localtime(visit.entered_at)}')
+        time_duration = localtime() - localtime(visit.entered_at)
+        print(f'Находится в хранилище: {time_duration}')
