@@ -21,6 +21,8 @@ if __name__ == '__main__':
         '''
     )
     visits = Visit.objects.all()
+    active_visits = Visit.objects.filter(leaved_at__isnull=True)
+    print(active_visits)
     active_pass_cards = Passcard.objects.filter(is_active=True)
 
     print(f'Все визиты: {visits}')
