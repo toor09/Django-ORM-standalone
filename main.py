@@ -6,7 +6,7 @@ from django.core.management import execute_from_command_line
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
 execute_from_command_line('manage.py runserver 0.0.0.0:8000'.split())
 # django.setup()
-#
+
 # from datacenter.models import Passcard  # noqa: E402
 # from datacenter.models import Visit  # noqa: E402
 #
@@ -38,3 +38,6 @@ execute_from_command_line('manage.py runserver 0.0.0.0:8000'.split())
 #
 #     for num, visit in enumerate(visits[:20], start=1):
 #         print(f'{num}-{visit.passcard.owner_name}')
+#
+#     visits_by_passcard = Visit.objects.filter(passcard__passcode=first_pass_card.passcode)
+#     print(visits_by_passcard)

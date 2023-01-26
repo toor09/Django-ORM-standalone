@@ -21,17 +21,24 @@ class Visit(models.Model):
     leaved_at = models.DateTimeField(null=True)
 
     def get_duration(self):
-        return localtime() - self.entered_at
+        if self.leaved_at:
+            return localtime(self.leaved_at) - localtime(self.entered_at)
+        return localtime() - localtime(self.leaved_at)
 
     def get_local_entered_at(self):
         return localtime(self.entered_at)
+
+    def is_visit_long(self, minutes=60):
+        if self.leaved_at:
+            delta = localtime(self.leaved_at) - localtime(self.entered_at)
+            return delta.total_seconds() > minutes * 60
+        return False
 
     @staticmethod
     def format_duration(duration):
         seconds = duration.total_seconds()
         hours = seconds // 3600
         minutes = (seconds % 3600) // 60
-
         return f'{hours:.0f}ч:{minutes:.0f}мин'
 
     def __str__(self):
