@@ -17,10 +17,11 @@ DATABASES = {
         'PASSWORD': env.str('DB_PASSWORD'),
     }
 }
+CONSOLE_MODE = env.bool('CONSOLE_MODE', default=False)
 
 INSTALLED_APPS = ['datacenter']
 
-SECRET_KEY = env.str("SECRET_KEY")
+SECRET_KEY = env.str('SECRET_KEY')
 
 DEBUG = True
 
