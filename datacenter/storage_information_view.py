@@ -1,9 +1,10 @@
-from datacenter.models import Passcard
-from datacenter.models import Visit
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
+from datacenter.models import Visit
 
-def storage_information_view(request):
+
+def storage_information_view(request: HttpRequest) -> HttpResponse:
     non_closed_visits = []
     active_visits = Visit.objects.filter(leaved_at__isnull=True)
     for active_visit in active_visits:

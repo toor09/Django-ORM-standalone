@@ -1,10 +1,12 @@
-from datacenter.models import Passcard
-from datacenter.models import Visit
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
+from uuid import UUID
+
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import get_object_or_404, render
+
+from datacenter.models import Passcard, Visit
 
 
-def passcard_info_view(request, passcode):
+def passcard_info_view(request: HttpRequest, passcode: UUID) -> HttpResponse:
     this_passcard_visits = []
     passcard = get_object_or_404(Passcard, passcode=passcode)
     passcard_visits = Visit.objects.filter(passcard__passcode=passcode)
