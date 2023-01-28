@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django.db import models
 from django.utils.timezone import localtime
@@ -22,10 +22,10 @@ class Visit(models.Model):
     entered_at = models.DateTimeField()
     leaved_at = models.DateTimeField(null=True)
 
-    def get_duration(self) -> timedelta:
+    def get_duration(self) -> float:
         if self.leaved_at:
-            return localtime(self.leaved_at) - localtime(self.entered_at)
-        return localtime() - localtime(self.entered_at)
+            return (localtime(self.leaved_at) - localtime(self.entered_at)).total_seconds()
+        return (localtime() - localtime(self.entered_at)).total_seconds()
 
     def get_local_entered_at(self) -> datetime:
         return localtime(self.entered_at)
@@ -37,10 +37,9 @@ class Visit(models.Model):
         return False
 
     @staticmethod
-    def format_duration(duration: timedelta) -> str:
-        seconds = duration.total_seconds()
-        hours = seconds // 3600
-        minutes = (seconds % 3600) // 60
+    def format_duration(duration: float) -> str:
+        hours = duration // 3600
+        minutes = (duration % 3600) // 60
         return f'{hours:.0f}ч:{minutes:.0f}мин'
 
     def __str__(self) -> str:
