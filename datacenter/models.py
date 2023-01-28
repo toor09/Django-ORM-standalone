@@ -30,11 +30,9 @@ class Visit(models.Model):
     def get_local_entered_at(self) -> datetime:
         return localtime(self.entered_at)
 
-    def is_visit_long(self, minutes: int = 60) -> bool:
-        if self.leaved_at:
-            delta = localtime(self.leaved_at) - localtime(self.entered_at)
-            return delta.total_seconds() > minutes * 60
-        return False
+    @staticmethod
+    def is_visit_long(duration: float, minutes: int = 60) -> bool:
+        return True if duration > minutes * 60 else False
 
     @staticmethod
     def format_duration(duration: float) -> str:

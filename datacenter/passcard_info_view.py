@@ -15,7 +15,7 @@ def passcard_info_view(request: HttpRequest, passcode: UUID) -> HttpResponse:
             {
                 'entered_at': passcard_visit.get_local_entered_at(),
                 'duration': passcard_visit.format_duration(passcard_visit.get_duration()),
-                'is_strange': passcard_visit.is_visit_long(),
+                'is_strange': passcard_visit.is_visit_long(passcard_visit.get_duration()),
             }
         )
 

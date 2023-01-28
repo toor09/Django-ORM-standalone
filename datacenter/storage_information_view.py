@@ -13,6 +13,7 @@ def storage_information_view(request: HttpRequest) -> HttpResponse:
                 'who_entered': active_visit.passcard.owner_name,
                 'entered_at': active_visit.get_local_entered_at(),
                 'duration': active_visit.format_duration(active_visit.get_duration()),
+                'is_strange': active_visit.is_visit_long(active_visit.get_duration()),
             }
         )
 
