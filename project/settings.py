@@ -17,7 +17,6 @@ DATABASES = {
         'PASSWORD': env.str('DB_PASSWORD'),
     }
 }
-CONSOLE_MODE = env.bool('CONSOLE_MODE', default=False)
 
 INSTALLED_APPS = ['datacenter']
 
